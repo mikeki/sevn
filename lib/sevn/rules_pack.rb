@@ -22,7 +22,7 @@ module Sevn
     end
 
     def action_aliases
-      Sevn::Constants::EMPTY_ARRAY
+      Sevn::Constants::EMPTY_HASH
     end
 
     private

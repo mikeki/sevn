@@ -9,12 +9,7 @@ shared_examples :valid_abilities do
     end
 
     def allowed?(action, object, subject)
-      # reset use
-      abilities.reset_use
-
-      # validate work of both global & local namespaces
-      abilities.allowed?(action, object, subject) &&
-        abilities.use(rules_key).allowed?(action, object, subject)
+      abilities.allowed?(action, object, subject)
     end
 
     describe "should return true or false depend on access" do

@@ -12,25 +12,24 @@ describe Sevn, "initialize" do
     end
 
     it "should create authorization object" do
-      Sevn.new.should be_kind_of(Sevn)
+      Sevn::Ability.new.should be_kind_of(Sevn::Ability)
     end
 
     it "should raise error if invalid argument passed" do
-      lambda { Sevn.new("wrong argument") }.should raise_error Sevn::InitializeArgumentError
+      lambda { Sevn::Ability.new("wrong argument") }.should raise_error Sevn::Errors::InitializeArgumentError
     end
 
     it "should create authorization object" do
-      Sevn.new(:book_rules => BookRules.new).should be_kind_of(Sevn)
+      Sevn::Ability.new(:book_rules => BookRules.new).should be_kind_of(Sevn::Ability)
     end
 
     it "should create authorization object" do
-      Sevn.new(:book0 => BookRules.new, :book1 => BookRules.new).should be_kind_of(Sevn)
+      Sevn::Ability.new(:book0 => BookRules.new, :book1 => BookRules.new).should be_kind_of(Sevn::Ability)
     end
 
     describe "passing rules on initialization" do
       it_should_behave_like :valid_abilities do
-        let(:abilities) { Sevn.new(:book_rules => BookRules.new) }
-        let(:rules_key) { :book_rules }
+        let(:abilities) { Sevn::Ability.new(:book => BookRules.new) }
       end
     end
   end

@@ -89,8 +89,7 @@ module Sevn
       end
 
       def action_allowed_for?(object, action, subject, options)
-        rule_pack_to_check = determine_rule_pack(subject, options)
-        rules_packs[rule_pack_to_check].allowed?(object, action, subject)
+        determine_rule_pack(subject, options).allowed?(object, action, subject)
       end
 
       def determine_rule_pack(subject, options)
