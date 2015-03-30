@@ -1,7 +1,9 @@
+require 'codeclimate-test-reporter'
+CodeClimate::TestReporter.start
+
 require 'simplecov'
 require 'coveralls'
 require 'sevn'
-require 'codeclimate-test-reporter'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
     SimpleCov::Formatter::HTMLFormatter,
@@ -16,4 +18,3 @@ end
 Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f}
 
 Coveralls.wear!
-CodeClimate::TestReporter.start
