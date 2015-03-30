@@ -1,8 +1,20 @@
-require "rubygems"
-require "bundler"
-require "sevn"
-Bundler.require(:default, :development)
+require 'simplecov'
 require 'coveralls'
-Coveralls.wear!
+require 'rubygems'
+require 'bundler'
 
-Dir[File.dirname(__FILE__) + '/support/*.rb'].each {|file| require file }
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+    SimpleCov::Formatter::HTMLFormatter,
+    Coveralls::SimpleCov::Formatter
+]
+SimpleCov.start do
+  add_filter '/spec/'
+end
+
+require 'sevn'
+
+# Requires supporting ruby files with custom matchers and macros, etc,
+# in spec/support/ and its subdirectories.
+Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f}
+
+Coveralls.wear!
