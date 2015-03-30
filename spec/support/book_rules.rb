@@ -1,4 +1,4 @@
-class BookRules
+class BookRules < Sevn::RulesPack
   def allowed(author, action, book)
     # check for correct class & nil
     return [] unless author.instance_of?(Author) && book.instance_of?(Book)

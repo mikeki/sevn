@@ -29,7 +29,7 @@ module Sevn
 
     class InvalidPackAbilitiesType < StandardError
       def message
-        'RulesPack "#allowed_abilities" must be an "Array"'
+        'RulesPack abilities must be an "Array"'
       end
     end
   end
