@@ -9,8 +9,8 @@ describe Sevn do
     let(:rules) { BookRules.new }
 
     describe :add_pack do
-      it { abilities.send(:add_pack, :global, rules).should be_true }
-      it { lambda { abilities.send(:add_pack, :wrong, nil)}.should raise_error(Sevn::Errors::InvalidPackPassed) }
+      it { expect(abilities.send(:add_pack, :global, rules)).to be_truthy }
+      it { expect(lambda { abilities.send(:add_pack, :wrong, nil)}).to raise_error(Sevn::Errors::InvalidPackPassed) }
     end
 
     describe :valid_rules_pack? do
@@ -18,16 +18,16 @@ describe Sevn do
         Object.new
       end
 
-      it { abilities.send(:valid_rules_pack?, BookRules.new).should be_true }
-      it { abilities.send(:valid_rules_pack?, invalid).should be_false }
-      it { abilities.send(:valid_rules_pack?, Book.new("Book", "Miguel")).should be_false }
+      it { expect(abilities.send(:valid_rules_pack?, BookRules.new)).to be_truthy }
+      it { expect(abilities.send(:valid_rules_pack?, invalid)).to be_falsey }
+      it { expect(abilities.send(:valid_rules_pack?, Book.new("Book", "Miguel"))).to be_falsey }
     end
 
     describe :pack_exist? do
       before { abilities.send(:add_pack, :global, rules) }
 
-      it { abilities.send(:pack_exist?, :global).should be_true }
-      it { abilities.send(:pack_exist?,:ufo).should be_false }
+      it { expect(abilities.send(:pack_exist?, :global)).to be_truthy }
+      it { expect(abilities.send(:pack_exist?,:ufo)).to be_falsey }
     end
   end
 end

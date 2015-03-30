@@ -14,38 +14,38 @@ shared_examples :valid_abilities do
 
     describe "should return true or false depend on access" do
       context :read_book do
-        it { allowed?(@jim,  :read_book, @jims_book).should be_true }
-        it { allowed?(@mike, :read_book, @mikes_book).should be_true }
-        it { allowed?(@jim,  :read_book, @mikes_book).should be_true }
-        it { allowed?(@mike, :read_book, @jims_book).should be_true }
+        it { expect(allowed?(@jim,  :read_book, @jims_book)).to be_truthy }
+        it { expect(allowed?(@mike, :read_book, @mikes_book)).to be_truthy }
+        it { expect(allowed?(@jim,  :read_book, @mikes_book)).to be_truthy }
+        it { expect(allowed?(@mike, :read_book, @jims_book)).to be_truthy }
       end
 
       context :rate_book do
-        it { allowed?(@jim,  :rate_book, @jims_book).should be_false }
-        it { allowed?(@mike, :rate_book, @mikes_book).should be_false }
-        it { allowed?(@jim,  :rate_book, @mikes_book).should be_true }
-        it { allowed?(@mike, :rate_book, @jims_book).should be_true }
+        it { expect(allowed?(@jim,  :rate_book, @jims_book)).to be_falsey }
+        it { expect(allowed?(@mike, :rate_book, @mikes_book)).to be_falsey }
+        it { expect(allowed?(@jim,  :rate_book, @mikes_book)).to be_truthy }
+        it { expect(allowed?(@mike, :rate_book, @jims_book)).to be_truthy }
       end
 
       context :edit_book do
-        it { allowed?(@jim, :edit_book, @jims_book).should be_true }
-        it { allowed?(@mike,:edit_book,  @mikes_book).should be_true }
-        it { allowed?(@jim, :edit_book, @mikes_book).should be_false }
-        it { allowed?(@mike,:edit_book,  @jims_book).should be_false }
+        it { expect(allowed?(@jim, :edit_book, @jims_book)).to be_truthy }
+        it { expect(allowed?(@mike,:edit_book,  @mikes_book)).to be_truthy }
+        it { expect(allowed?(@jim, :edit_book, @mikes_book)).to be_falsey }
+        it { expect(allowed?(@mike,:edit_book,  @jims_book)).to be_falsey }
       end
 
       context :publish_book do
-        it { allowed?(@jim, :publish_book, @jims_book).should be_false }
-        it { allowed?(@mike,:publish_book,  @mikes_book).should be_false }
-        it { allowed?(@jim, :publish_book, @mikes_book).should be_false }
-        it { allowed?(@mike,:publish_book,  @jims_book).should be_false }
+        it { expect(allowed?(@jim, :publish_book, @jims_book)).to be_falsey }
+        it { expect(allowed?(@mike,:publish_book,  @mikes_book)).to be_falsey }
+        it { expect(allowed?(@jim, :publish_book, @mikes_book)).to be_falsey }
+        it { expect(allowed?(@mike,:publish_book,  @jims_book)).to be_falsey }
       end
 
       context 'passing multiple actions' do
-        it { allowed?(@jim, [:read_book, :edit_book], @jims_book).should be_true }
-        it { allowed?(@jim, [:ead_book,  :publish_book, :edit_book], @jims_book).should be_false }
-        it { allowed?(@mike, [:read_book, :edit_book], @mikes_book).should be_true }
-        it { allowed?(@mike, [:rate_book, :publish_book, :edit_book], @mikes_book).should be_false }
+        it { expect(allowed?(@jim, [:read_book, :edit_book], @jims_book)).to be_truthy }
+        it { expect(allowed?(@jim, [:ead_book,  :publish_book, :edit_book], @jims_book)).to be_falsey }
+        it { expect(allowed?(@mike, [:read_book, :edit_book], @mikes_book)).to be_truthy }
+        it { expect(allowed?(@mike, [:rate_book, :publish_book, :edit_book], @mikes_book)).to be_falsey }
       end
     end
   end
