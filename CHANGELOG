@@ -1,0 +1,4 @@
+v 0.0.1
+  - Forked Six
+  - Created gem 'Sevn'
+  - Initial change, passing action to method allowed in order to make the proof of concept
