@@ -4,7 +4,7 @@ require "sevn/version"
 
 Gem::Specification.new do |s|
   s.name        = 'sevn'
-  s.version     = '0.0.0'
+  s.version     = Sevn::VERSION
   s.date        = '2015-03-29'
   s.summary     = 'Sevn is an authorization gem inspired by Six'
   s.description = 'Mid-weigth authorization gem'
