@@ -1,4 +1,4 @@
-require './lib/sevn/ability'
-require './lib/sevn/rules_pack'
-require './lib/sevn/errors'
-require './lib/sevn/constants'
+require 'sevn/ability'
+require 'sevn/rules_pack'
+require 'sevn/errors'
+require 'sevn/constants'
