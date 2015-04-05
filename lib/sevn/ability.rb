@@ -57,6 +57,36 @@ module Sevn
       end
     end
 
+    # Check if +object+ is authorized to do +actions+ in +subject+
+    # if action is not allowed it will raise an Unauthorized error
+    #
+    # == Parameters:
+    # actions::
+    #   Symbol or Array of Symbols of the actions to check
+    # object::
+    #   object trying to access resource
+    # subject::
+    #   resource to be accessed
+    # options::
+    #   a list of options to consider when checking.
+    #
+    # == Options:
+    # use_pack::
+    #   check for actions in the specified pack instead of auto-determining the pack.
+    #
+    # == Returns:
+    # +subject+
+    #
+    # == Exceptions:
+    # if object is not allowed to do action on subject, it will raise an UnauthorizedError
+    #
+    def authorize!(object, actions, subject, options = {})
+      if !allowed?(object, actions, subject, options)
+        raise Sevn::Errors::UnauthorizedError.new(object, actions, subject)
+      end
+      subject
+    end
+
     private
       def add_pack(name, pack)
         if valid_rules_pack?(pack)

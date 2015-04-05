@@ -32,5 +32,17 @@ module Sevn
         'RulesPack abilities must be an "Array"'
       end
     end
+
+    class UnauthorizedError < StandardError
+      def initialize(object, action, subject)
+        @object = object
+        @action = action
+        @subject = subject
+      end
+
+      def message
+        "#{@object.inspect} is not authorized to do '#{@action}' to #{@subject.inspect}"
+      end
+    end
   end
 end
