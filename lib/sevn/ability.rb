@@ -125,11 +125,11 @@ module Sevn
       def determine_rule_pack(subject, options)
         if options.has_key?(:use_pack)
           pack = options[:use_pack]
-          @rules_packs[pack] || raise(Sevn::Errors::NoPackError(pack, true))
+          @rules_packs[pack] || raise(Sevn::Errors::NoPackError.new(pack, true))
         elsif subject.kind_of?(Class)
-          get_class_rule_pack(subject) || raise(Sevn::Errors::NoPackError(subject.name))
+          get_class_rule_pack(subject) || raise(Sevn::Errors::NoPackError.new(subject.name))
         else
-          get_instance_rule_pack(subject) || raise(Sevn::Errors::NoPackError(subject.class.name))
+          get_instance_rule_pack(subject) || raise(Sevn::Errors::NoPackError.new(subject.class.name))
         end
       end
 
