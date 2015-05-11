@@ -1,3 +1,5 @@
+v 0.0.4
+  - Bug fix of class not being initialized
 v 0.0.1
   - Forked Six
   - Created gem 'Sevn'
