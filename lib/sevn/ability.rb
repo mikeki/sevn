@@ -105,11 +105,7 @@ module Sevn
       end
 
       def action_allowed?(object, action, subjects, options)
-        if collection_proxy_defined? && subjects.class == ActiveRecord::Associations::CollectionProxy
-          subjects = subjects.to_a
-        end
-
-        if subjects.kind_of?(Array)
+        if subjects.respond_to?(:each)
           # if subjects is an Array, let's group them by class
           # check if action is allowed for the whole class or to all the subjects of that class
           subjects.group_by(&:class).all? do |class_name, subjects_of_class|
@@ -167,11 +163,6 @@ module Sevn
             gsub(/([a-z\d])([A-Z])/,'\1_\2').
             tr("-", "_").
             downcase
-      end
-
-      def collection_proxy_defined?
-        defined?(ActiveRecord::Associations::CollectionProxy) == 'constant' &&
-        ActiveRecord::Associations::CollectionProxy.class == Class
       end
   end
 end
