@@ -6,7 +6,7 @@ _Sevn was built based on [Six](https://github.com/randx/six), but **+1'd**, to m
 ### Installation
 
 ```ruby
-  gem install sevn
+gem install sevn
 ```
 
 ### QuickStart
@@ -39,46 +39,46 @@ Rules Packs are ruby classes, that inherit from `Sevn::RulesPack`, they are in c
 #### Examples of valid Rule Packs:
   1. Overriding `general_abilities`
   ```ruby
-    class BookRules < Sevn::RulesPack
-      def general_abilities
-        [:read, :buy]
-      end
+  class BookRules < Sevn::RulesPack
+    def general_abilities
+      [:read, :buy]
     end
+  end
   ```
 
   2. Overriding `abilities`
   ```ruby
-    class BookRules < Sevn::RulesPack
-      def abilities(object, book)
-        actions = []
-        actions << :write if object.is_writer?
-        actions << :sell if object.is_publisher?
-        actions << :edit if object.is_writer_of?(book)
-        actions
-      end
+  class BookRules < Sevn::RulesPack
+    def abilities(object, book)
+      actions = []
+      actions << :write if object.is_writer?
+      actions << :sell if object.is_publisher?
+      actions << :edit if object.is_writer_of?(book)
+      actions
     end
+  end
   ```
 
   3. Overriding `action_aliases`
   ```ruby
-    class BookRules < Sevn::RulesPack
-      def action_aliases
-        { :get => :buy, :view => :read }
-      end
+  class BookRules < Sevn::RulesPack
+    def action_aliases
+      { :get => :buy, :view => :read }
     end
+  end
   ```
 
   4. Creating action methods:
   ```ruby
-    class BookRules < Sevn::RulesPack
-      def sevn_write(object, book)
-        object.is_writer?
-      end
-
-      def sevn_edit(object, book)
-        object.is_writer_of?(book)
-      end
+  class BookRules < Sevn::RulesPack
+    def sevn_write(object, book)
+      object.is_writer?
     end
+
+    def sevn_edit(object, book)
+      object.is_writer_of?(book)
+    end
+  end
   ```
 
 ### Abilities object
@@ -87,9 +87,9 @@ The abilities object is in charge of choosing the right rule pack for that subje
 
 #### Creating abilities object
   ```ruby
-    abilites = Six.new({
-        :book => Bookrules.new
-      })
+  abilites = Six.new({
+    :book => Bookrules.new
+  })
   ```
 The abilities object is initialized with a Hash, the keys are the identifiers of the rule pack, and the object in the Hash is an object for that rule pack.
 
