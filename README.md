@@ -87,7 +87,7 @@ The abilities object is in charge of choosing the right rule pack for that subje
 
 #### Creating abilities object
   ```ruby
-  abilites = Six.new({
+  abilites = Sevn::Ability.new({
     :book => Bookrules.new
   })
   ```
@@ -129,7 +129,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def current_abilities
-    @current_abilities ||= Six.new({
+    @current_abilities ||= Sevn::Ability.new({
       :book => BookRules.new
     })
   end
